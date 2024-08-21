@@ -2,6 +2,7 @@ package com.charlene.model;
 
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public abstract class Item {
     private String name;
@@ -25,4 +26,17 @@ public abstract class Item {
     }
 
     public abstract String getItemType();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(name, item.name) && Objects.equals(price, item.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price);
+    }
 }
